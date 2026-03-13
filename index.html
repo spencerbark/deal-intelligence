@@ -101,7 +101,7 @@ header{padding:14px 24px;border-bottom:1px solid var(--border);background:var(--
 <script>
 const CLIENT_ID = 'afd5d8bb-fc00-4e20-9e85-46ef19292e8a';
 const TENANT_ID = 'abe1addb-8125-4bf9-8490-bb72fba58790';
-const msalConfig = {auth:{clientId:CLIENT_ID,authority:"https://login.microsoftonline.com/"+TENANT_ID,redirectUri:window.location.origin},cache:{cacheLocation:"sessionStorage"}};
+const msalConfig = {auth:{clientId:CLIENT_ID,authority:"https://login.microsoftonline.com/common",redirectUri:window.location.origin},cache:{cacheLocation:"sessionStorage"}};
 let msalInstance = null;
 let accessToken = null, docsContext = "", chatHistory = [];
 async function signIn(){try{if(typeof msal==="undefined"){alert("Auth library not loaded. Please refresh.");return;}msalInstance = new msal.PublicClientApplication(msalConfig);await msalInstance.initialize();const result=await msalInstance.loginPopup({scopes:["User.Read","Sites.Read.All","Files.Read.All"]});accessToken=result.accessToken;await loadSharePointFiles();showChatScreen();}catch(e){alert("Sign in failed: "+e.message);}}
